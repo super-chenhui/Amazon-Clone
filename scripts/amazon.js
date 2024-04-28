@@ -46,7 +46,7 @@ products.forEach((product) => {
         Added
       </div>
 
-      <button class="add-to-cart-button button-primary">
+      <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
         Add to Cart
       </button>
     </div>
@@ -55,3 +55,35 @@ products.forEach((product) => {
 
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
+
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const productId = button.dataset.productId;
+    
+    /*
+    let matchingItem;
+    cart.forEach((item) => {
+      if (item.productName === productName) {
+        matchingItem = item;
+      }
+      console.log('find...' + item.productName);
+    });
+    */
+    // When the matchingItem is found, forEach() will continue to execute code on the remaining items,
+    // but find() will stop looking 
+   
+    let matchingItem = cart.find(item => item.productId === productId);
+
+    if (matchingItem) {
+      matchingItem.quantity++;
+    } else {
+      cart.push({
+        productId,  // productName: productName,
+        quantity: 1
+      });
+    }
+
+
+    console.log(cart);
+  });
+})
