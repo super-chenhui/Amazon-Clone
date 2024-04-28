@@ -72,7 +72,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     // When the matchingItem is found, forEach() will continue to execute code on the remaining items,
     // but find() will stop looking 
    
-    let matchingItem = cart.find(item => item.productId === productId);
+    const matchingItem = cart.find(item => item.productId === productId);
 
     if (matchingItem) {
       matchingItem.quantity++;
@@ -84,6 +84,12 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     }
 
 
-    console.log(cart);
+    let cartQuantity = 0;
+    cart.forEach((item) => {
+      cartQuantity += item.quantity;
+    });
+    document.querySelector('.js-cart-quantity').innerText = cartQuantity;
+
+
   });
 })
