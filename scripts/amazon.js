@@ -1,9 +1,9 @@
-import {cart, addToCart} from '../data/cart.js';
-import {products} from '../data/products.js';
+import { cart, addToCart } from '../data/cart.js';
+import { products } from '../data/products.js';
 
 let productsHTML = '';
 
-products.forEach((product) => {
+products.forEach(product => {
   productsHTML += `
     <div class="product-container">
       <div class="product-image-container">
@@ -61,8 +61,8 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 function UpdateCartQuantity() {
   let cartQuantity = 0;
-    cart.forEach((CartItem) => {
-      cartQuantity += CartItem.quantity;
+    cart.forEach((cartItem) => {
+      cartQuantity += cartItem.quantity;
     });
     document.querySelector('.js-cart-quantity').innerText = cartQuantity;
 }
@@ -88,7 +88,7 @@ function showMessage(addedMessageTimeoutId, productId) {
   return addedMessageTimeoutId;
 }
 
-document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+document.querySelectorAll('.js-add-to-cart').forEach(button => {
   let addedMessageTimeoutId;
   button.addEventListener('click', () => {
     const {productId} = button.dataset;  // const productId = button.dataset.productId;
