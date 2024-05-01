@@ -71,8 +71,6 @@ function showMessage(addedMessageTimeoutId, productId) {
   const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
   addedMessage.classList.add('added-to-cart-visible');
 
-  console.log(addedMessageTimeoutId);
-
   // Check if a previous timeoutId exists. If it does, stop it.
   if (addedMessageTimeoutId) {
     clearTimeout(addedMessageTimeoutId);

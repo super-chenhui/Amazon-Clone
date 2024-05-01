@@ -12,12 +12,7 @@ if (!cart) {
   }];
 }
 
-
-function saveToStorage() {
-  localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-export function addToCart(productId, quantity) {
+function getCartItem(productId) {
   /*
   let matchingItem;
   cart.forEach((item) => {
@@ -27,11 +22,15 @@ export function addToCart(productId, quantity) {
     console.log('find...' + item.productName);
   });
   */
-  /*
-  When the matchingItem is found,
-  forEach() will continue to execute code on the remaining items,
-  find() will stop looking */
-  const matchingItem = cart.find(cartItem => cartItem.productId === productId);
+  return cart.find(cartItem => cartItem.productId === productId);
+}
+
+function saveToStorage() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+export function addToCart(productId, quantity) {
+  const matchingItem = getCartItem(productId);
 
   if (matchingItem) {
     matchingItem.quantity += quantity;
@@ -71,7 +70,7 @@ export function calculateCartQuantity() {
 }
 
 export function updateQuantity(productId, newQuantity) {
-  const matchingItem = cart.find(cartItem => cartItem.productId === productId);
+  const matchingItem = getCartItem(productId);
 
   matchingItem.quantity = newQuantity;
 
@@ -79,7 +78,7 @@ export function updateQuantity(productId, newQuantity) {
 }
 
 export function updateDeliveryOption(productId, deliveryOptionId) {
-  const matchingItem = cart.find(cartItem => cartItem.productId === productId);
+  const matchingItem = getCartItem(productId);
 
   matchingItem.deliveryOptionId = deliveryOptionId;
 
