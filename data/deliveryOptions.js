@@ -18,7 +18,7 @@ export function getDeliveryOption(deliveryOptionId) {
   return deliveryOptions.find(option => option.id === deliveryOptionId);
 }
 
-export function getDeliveryDate(deliveryOption) {
+export function calculateDeliveryDate(deliveryOption) {
   const today = dayjs();
   const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
 
