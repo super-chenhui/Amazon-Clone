@@ -4,6 +4,7 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { formatCurrency } from './utils/money.js';
 import { addToCart } from '../data/cart.js';
 import { cart } from '../data/cart-class.js';
+import { renderGeneralHeader } from './utils/generalHeader.js';
 
 async function loadPage() {
   await loadProductsFetch();
@@ -84,7 +85,7 @@ async function loadPage() {
   document.querySelectorAll('.js-buy-again').forEach(button => {
     button.addEventListener('click', () => {
       cart.addToCart(button.dataset.productId, Number(button.dataset.productQuantity));
-      cart.UpdateCartQuantity();
+      renderGeneralHeader();
 
       button.innerHTML = 'Added';
       setTimeout(() => {
@@ -97,5 +98,5 @@ async function loadPage() {
   })
 }
 
-cart.UpdateCartQuantity();
+renderGeneralHeader();
 loadPage();

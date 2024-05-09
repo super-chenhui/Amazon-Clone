@@ -1,7 +1,10 @@
 // import { cart, addToCart, calculateCartQuantity } from '../data/cart.js';
 import { cart } from '../data/cart-class.js';
 import { products, loadProducts } from '../data/products.js';
+import { renderGeneralHeader } from './utils/generalHeader.js';
 import { formatCurrency } from './utils/money.js';
+
+renderGeneralHeader();
 
 loadProducts(renderProductsGrid);
 
@@ -86,7 +89,7 @@ function renderProductsGrid() {
 
   document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-  cart.UpdateCartQuantity();
+  // cart.UpdateCartQuantity();
 
   function showMessage(addedMessageTimeoutId, productId) {
     const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
@@ -117,7 +120,8 @@ function renderProductsGrid() {
       
       cart.addToCart(productId, quantity);
 
-      cart.UpdateCartQuantity();
+      // cart.UpdateCartQuantity();
+      renderGeneralHeader();
       
       addedMessageTimeoutId = showMessage(addedMessageTimeoutId, productId);
 
