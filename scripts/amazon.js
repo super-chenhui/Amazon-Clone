@@ -86,13 +86,7 @@ function renderProductsGrid() {
 
   document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-
-  function UpdateCartQuantity() {
-    const cartQuantity = cart.calculateCartQuantity();
-    document.querySelector('.js-cart-quantity').innerText = cartQuantity;
-  }
-
-  UpdateCartQuantity();
+  cart.UpdateCartQuantity();
 
   function showMessage(addedMessageTimeoutId, productId) {
     const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
@@ -123,7 +117,7 @@ function renderProductsGrid() {
       
       cart.addToCart(productId, quantity);
 
-      UpdateCartQuantity();
+      cart.UpdateCartQuantity();
       
       addedMessageTimeoutId = showMessage(addedMessageTimeoutId, productId);
 
@@ -135,4 +129,13 @@ function renderProductsGrid() {
       const search = document.querySelector('.js-search-bar').value;
       window.location.href = `amazon.html?search=${search}`;
     });
+
+  // Searching by pressing "Enter" on the keyboard.
+  document.querySelector('.js-search-bar')
+  .addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      const searchTerm = document.querySelector('.js-search-bar').value;
+      window.location.href = `amazon.html?search=${searchTerm}`;
+    }
+  });
 }

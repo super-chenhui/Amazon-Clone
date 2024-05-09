@@ -81,6 +81,11 @@ class Cart {
     this.saveToStorage();
   }
 
+  UpdateCartQuantity() {
+    const cartQuantity = cart.calculateCartQuantity();
+    document.querySelector('.js-cart-quantity').innerText = cartQuantity;
+  }
+
   updateDeliveryOption(productId, deliveryOptionId) {
     const matchingItem = this.getCartItem(productId);
 
@@ -95,6 +100,11 @@ class Cart {
 
     matchingItem.deliveryOptionId = deliveryOptionId;
 
+    this.saveToStorage();
+  }
+
+  resetCart() {
+    this.cartItems = [];
     this.saveToStorage();
   }
 }
